@@ -1,0 +1,442 @@
+{
+  "info": {
+    "name": "Lururu API - Team Finder",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "item": [
+    {
+      "name": "Users",
+      "item": [
+        {
+          "name": "Create User",
+          "request": {
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"name\": \"Riki\",\n  \"skills\": [\"Node.js\", \"MongoDB\"],\n  \"portfolio_link\": \"https://github.com/riki\",\n  \"availability_status\": \"open\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{base_url}}/api/users",
+              "host": ["{{base_url}}"],
+              "path": ["api", "users"]
+            }
+          }
+        },
+        {
+          "name": "Get Users (Search, Filter, Sort, Paginate)",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{base_url}}/api/users?search=riki&skills=Node.js&sort=name&page=1&limit=10",
+              "host": ["{{base_url}}"],
+              "path": ["api", "users"],
+              "query": [
+                {
+                  "key": "search",
+                  "value": "riki"
+                },
+                {
+                  "key": "skills",
+                  "value": "Node.js"
+                },
+                {
+                  "key": "sort",
+                  "value": "name"
+                },
+                {
+                  "key": "page",
+                  "value": "1"
+                },
+                {
+                  "key": "limit",
+                  "value": "10"
+                }
+              ]
+            }
+          }
+        },
+        {
+          "name": "Get User by ID",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{base_url}}/api/users/60d5ec49f1b2c8b1f8e4e1a1",
+              "host": ["{{base_url}}"],
+              "path": ["api", "users", "60d5ec49f1b2c8b1f8e4e1a1"]
+            }
+          }
+        },
+        {
+          "name": "Update User",
+          "request": {
+            "method": "PUT",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"availability_status\": \"closed\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{base_url}}/api/users/60d5ec49f1b2c8b1f8e4e1a1",
+              "host": ["{{base_url}}"],
+              "path": ["api", "users", "60d5ec49f1b2c8b1f8e4e1a1"]
+            }
+          }
+        },
+        {
+          "name": "Delete User",
+          "request": {
+            "method": "DELETE",
+            "header": [],
+            "url": {
+              "raw": "{{base_url}}/api/users/60d5ec49f1b2c8b1f8e4e1a1",
+              "host": ["{{base_url}}"],
+              "path": ["api", "users", "60d5ec49f1b2c8b1f8e4e1a1"]
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "Teams",
+      "item": [
+        {
+          "name": "Create Team",
+          "request": {
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"leader_id\": \"60d5ec49f1b2c8b1f8e4e1a1\",\n  \"title\": \"Proyek Startup AI\",\n  \"objective\": \"Membangun AI cerdas\",\n  \"category\": \"startup\",\n  \"status\": \"open\",\n  \"roles_needed\": [\n    {\n      \"role\": \"Backend Engineer\",\n      \"required_skills\": [\"Node.js\", \"MongoDB\"],\n      \"quota\": 2,\n      \"status\": \"open\"\n    }\n  ]\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{base_url}}/api/teams",
+              "host": ["{{base_url}}"],
+              "path": ["api", "teams"]
+            }
+          }
+        },
+        {
+          "name": "Get Teams (Search, Filter, Sort, Paginate)",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{base_url}}/api/teams?search=Startup&category=startup&status=open&sort=title&page=1&limit=5",
+              "host": ["{{base_url}}"],
+              "path": ["api", "teams"],
+              "query": [
+                {
+                  "key": "search",
+                  "value": "Startup"
+                },
+                {
+                  "key": "category",
+                  "value": "startup"
+                },
+                {
+                  "key": "status",
+                  "value": "open"
+                },
+                {
+                  "key": "sort",
+                  "value": "title"
+                },
+                {
+                  "key": "page",
+                  "value": "1"
+                },
+                {
+                  "key": "limit",
+                  "value": "5"
+                }
+              ]
+            }
+          }
+        },
+        {
+          "name": "Get Team by ID",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{base_url}}/api/teams/60d5ec49f1b2c8b1f8e4e2b1",
+              "host": ["{{base_url}}"],
+              "path": ["api", "teams", "60d5ec49f1b2c8b1f8e4e2b1"]
+            }
+          }
+        },
+        {
+          "name": "Update Team",
+          "request": {
+            "method": "PUT",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"status\": \"closed\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{base_url}}/api/teams/60d5ec49f1b2c8b1f8e4e2b1",
+              "host": ["{{base_url}}"],
+              "path": ["api", "teams", "60d5ec49f1b2c8b1f8e4e2b1"]
+            }
+          }
+        },
+        {
+          "name": "Delete Team",
+          "request": {
+            "method": "DELETE",
+            "header": [],
+            "url": {
+              "raw": "{{base_url}}/api/teams/60d5ec49f1b2c8b1f8e4e2b1",
+              "host": ["{{base_url}}"],
+              "path": ["api", "teams", "60d5ec49f1b2c8b1f8e4e2b1"]
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "Applications",
+      "item": [
+        {
+          "name": "Create Application",
+          "request": {
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"team_id\": \"60d5ec49f1b2c8b1f8e4e2b1\",\n  \"applicant_id\": \"60d5ec49f1b2c8b1f8e4e1a2\",\n  \"role_applied\": \"Backend Engineer\",\n  \"message\": \"Saya siap berkontribusi penuh.\",\n  \"status\": \"pending\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{base_url}}/api/applications",
+              "host": ["{{base_url}}"],
+              "path": ["api", "applications"]
+            }
+          }
+        },
+        {
+          "name": "Get Applications (Filter, Sort, Paginate)",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{base_url}}/api/applications?team_id=60d5ec49f1b2c8b1f8e4e2b1&status=pending&sort=-_id&page=1&limit=10",
+              "host": ["{{base_url}}"],
+              "path": ["api", "applications"],
+              "query": [
+                {
+                  "key": "team_id",
+                  "value": "60d5ec49f1b2c8b1f8e4e2b1"
+                },
+                {
+                  "key": "status",
+                  "value": "pending"
+                },
+                {
+                  "key": "sort",
+                  "value": "-_id"
+                },
+                {
+                  "key": "page",
+                  "value": "1"
+                },
+                {
+                  "key": "limit",
+                  "value": "10"
+                }
+              ]
+            }
+          }
+        },
+        {
+          "name": "Get Application by ID",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{base_url}}/api/applications/60d5ec49f1b2c8b1f8e4e3c1",
+              "host": ["{{base_url}}"],
+              "path": ["api", "applications", "60d5ec49f1b2c8b1f8e4e3c1"]
+            }
+          }
+        },
+        {
+          "name": "Update Application",
+          "request": {
+            "method": "PUT",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"status\": \"accepted\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{base_url}}/api/applications/60d5ec49f1b2c8b1f8e4e3c1",
+              "host": ["{{base_url}}"],
+              "path": ["api", "applications", "60d5ec49f1b2c8b1f8e4e3c1"]
+            }
+          }
+        },
+        {
+          "name": "Delete Application",
+          "request": {
+            "method": "DELETE",
+            "header": [],
+            "url": {
+              "raw": "{{base_url}}/api/applications/60d5ec49f1b2c8b1f8e4e3c1",
+              "host": ["{{base_url}}"],
+              "path": ["api", "applications", "60d5ec49f1b2c8b1f8e4e3c1"]
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "Messages",
+      "item": [
+        {
+          "name": "Create Message",
+          "request": {
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"team_id\": \"60d5ec49f1b2c8b1f8e4e2b1\",\n  \"sender_id\": \"60d5ec49f1b2c8b1f8e4e1a1\",\n  \"message_text\": \"Pesan baru dikirim\",\n  \"attachments\": []\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{base_url}}/api/messages",
+              "host": ["{{base_url}}"],
+              "path": ["api", "messages"]
+            }
+          }
+        },
+        {
+          "name": "Get Messages (Filter, Range, Sort, Paginate)",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{base_url}}/api/messages?team_id=60d5ec49f1b2c8b1f8e4e2b1&startDate=2026-06-01T00:00:00Z&endDate=2026-06-30T23:59:59Z&sort=-createdAt&page=1&limit=20",
+              "host": ["{{base_url}}"],
+              "path": ["api", "messages"],
+              "query": [
+                {
+                  "key": "team_id",
+                  "value": "60d5ec49f1b2c8b1f8e4e2b1"
+                },
+                {
+                  "key": "startDate",
+                  "value": "2026-06-01T00:00:00Z"
+                },
+                {
+                  "key": "endDate",
+                  "value": "2026-06-30T23:59:59Z"
+                },
+                {
+                  "key": "sort",
+                  "value": "-createdAt"
+                },
+                {
+                  "key": "page",
+                  "value": "1"
+                },
+                {
+                  "key": "limit",
+                  "value": "20"
+                }
+              ]
+            }
+          }
+        },
+        {
+          "name": "Get Message by ID",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{base_url}}/api/messages/60d5ec49f1b2c8b1f8e4e5e1",
+              "host": ["{{base_url}}"],
+              "path": ["api", "messages", "60d5ec49f1b2c8b1f8e4e5e1"]
+            }
+          }
+        },
+        {
+          "name": "Update Message",
+          "request": {
+            "method": "PUT",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"message_text\": \"Teks pesan telah diedit.\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{base_url}}/api/messages/60d5ec49f1b2c8b1f8e4e5e1",
+              "host": ["{{base_url}}"],
+              "path": ["api", "messages", "60d5ec49f1b2c8b1f8e4e5e1"]
+            }
+          }
+        },
+        {
+          "name": "Delete Message",
+          "request": {
+            "method": "DELETE",
+            "header": [],
+            "url": {
+              "raw": "{{base_url}}/api/messages/60d5ec49f1b2c8b1f8e4e5e1",
+              "host": ["{{base_url}}"],
+              "path": ["api", "messages", "60d5ec49f1b2c8b1f8e4e5e1"]
+            }
+          }
+        }
+      ]
+    }
+  ],
+  "variable": [
+    {
+      "key": "base_url",
+      "value": "http://localhost:3000"
+    }
+  ]
+}
