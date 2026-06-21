@@ -3,6 +3,7 @@ const express = require("express");
 const connectDB = require("./src/config/db");
 const apiRouter = require("./src/routers/router");
 const cors = require("cors");
+const path = require('path');
 const app = express();
 const APP_HOST = process.env.APP_HOST ?? "http://localhost";
 const APP_PORT = process.env.APP_PORT ?? 3000;
