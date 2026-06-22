@@ -13,14 +13,14 @@ jobs:
       - name: Checkout Repository Kode
         uses: actions/checkout@v4
 
-      - name: Jalankan SSH Deployment Standar
+      - name: Jalankan SSH Deployment Standar Cloudflare Proxy
         run: |
           mkdir -p ~/.ssh
           echo "${{ secrets.SSH_PRIVATE_KEY }}" | base64 -d > ~/.ssh/id_rsa
           chmod 600 ~/.ssh/id_rsa
           
-          # Masuk secara native ke host deploy baru Anda
-          ssh -i ~/.ssh/id_rsa -o StrictHostKeyChecking=no root@${{ secrets.SERVER_HOST }} << 'EOF'
+          # Melakukan koneksi ke SERVER_HOST lewat port 2083 yang lolos saringan Cloudflare
+          ssh -i ~/.ssh/id_rsa -p 2083 -o StrictHostKeyChecking=no root@${{ secrets.SERVER_HOST }} << 'EOF'
             cd /var/www/html/Lururu
             git pull origin main
             docker build -t lururu-app .
