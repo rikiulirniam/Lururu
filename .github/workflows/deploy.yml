@@ -13,15 +13,15 @@ jobs:
       - name: Checkout Repository Kode
         uses: actions/checkout@v4
 
-      - name: Eksekusi Perintah Deployment via SSH Biasa
-        uses: appleboy/ssh-action@v1.0.3
-        with:
-          host: ${{ secrets.SERVER_HOST }}
-          username: ${{ secrets.SERVER_USER }}
-          # Trik mutlak: men-decode kembali string base64 menjadi kunci asli saat runtime
-          key: ${{ secrets.SSH_PRIVATE_KEY }}
-          port: 22
-          script: |
+      - name: Jalankan SSH Deployment Native IPv4
+        run: |
+          mkdir -p ~/.ssh
+          # Mengubah string Base64 di GitHub Secret menjadi file kunci privat asli tanpa merusak teks
+          echo "${{ secrets.SSH_PRIVATE_KEY }}" | base64 -d > ~/.ssh/id_rsa
+          chmod 600 ~/.ssh/id_rsa
+          
+          # Melakukan koneksi SSH murni menggunakan IPv4 Host Anda
+          ssh -i ~/.ssh/id_rsa -o StrictHostKeyChecking=no root@${{ secrets.SERVER_HOST }} << 'EOF'
             cd /var/www/html/Lururu
             git pull origin main
             docker build -t lururu-app .
@@ -33,3 +33,4 @@ jobs:
               --restart always \
               lururu-app
             docker image prune -f
+          EOF
