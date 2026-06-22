@@ -404,11 +404,10 @@ export default function TeamDetailPage() {
                   <label className="block text-xs font-medium mb-1.5" style={{ color: 'var(--text-secondary)' }}>Kategori</label>
                   <select value={editForm.category} onChange={e => setEditForm({ ...editForm, category: e.target.value })} className="w-full px-3 py-2.5 rounded border text-sm outline-none" style={inputStyle}>
                     <option value="">Pilih</option>
-                    <option value="web">Web</option>
-                    <option value="mobile">Mobile</option>
-                    <option value="ai">AI / ML</option>
-                    <option value="data">Data</option>
-                    <option value="game">Game</option>
+                    <option value="Project">Project</option>
+                    <option value="Competitive">Competitive</option>
+                    <option value="Startup">Startup</option>
+                    <option value="Study">Study</option>
                   </select>
                 </div>
                 <div>

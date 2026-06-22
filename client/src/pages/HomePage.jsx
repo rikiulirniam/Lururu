@@ -4,7 +4,7 @@ import api from '../services/api';
 import TeamCard from '../components/TeamCard';
 import toast from 'react-hot-toast';
 
-const CATEGORIES = ['', 'web', 'mobile', 'ai', 'data', 'game'];
+const CATEGORIES = ['', 'Project', 'Competitive', 'Startup', 'Study'];
 
 export default function HomePage() {
   const [teams, setTeams] = useState([]);
