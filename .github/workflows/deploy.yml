@@ -7,29 +7,22 @@ on:
 
 jobs:
   deploy:
-    runs-on: ubuntu-latest
+    runs-on: self-hosted
 
     steps:
       - name: Checkout Repository Kode
         uses: actions/checkout@v4
 
-      - name: Jalankan SSH Deployment Standar Cloudflare Proxy
+      - name: Jalankan Build dan Deploy Lokal
         run: |
-          mkdir -p ~/.ssh
-          echo "${{ secrets.SSH_PRIVATE_KEY }}" | base64 -d > ~/.ssh/id_rsa
-          chmod 600 ~/.ssh/id_rsa
-          
-          # Melakukan koneksi ke SERVER_HOST lewat port 2083 yang lolos saringan Cloudflare
-          ssh -i ~/.ssh/id_rsa -p 2083 -o StrictHostKeyChecking=no root@${{ secrets.SERVER_HOST }} << 'EOF'
-            cd /var/www/html/Lururu
-            git pull origin main
-            docker build -t lururu-app .
-            docker rm -f lururu-container 2>/dev/null || true
-            docker run -d \
-              --name lururu-container \
-              -p 5000:5000 \
-              --add-host=host.docker.internal:host-gateway \
-              --restart always \
-              lururu-app
-            docker image prune -f
-          EOF
+          cd /var/www/html/Lururu
+          git pull origin main
+          docker build -t lururu-app .
+          docker rm -f lururu-container 2>/dev/null || true
+          docker run -d \
+            --name lururu-container \
+            -p 5000:5000 \
+            --add-host=host.docker.internal:host-gateway \
+            --restart always \
+            lururu-app
+          docker image prune -f
